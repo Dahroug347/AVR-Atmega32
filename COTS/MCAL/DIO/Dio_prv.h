@@ -5,8 +5,8 @@
  *      Author: Dahroug
  */
 
-#ifndef DIO_PRV_H_
-#define DIO_PRV_H_
+#ifndef     DIO_PRV_H_
+#define     DIO_PRV_H_
 
 #define     PIND 						*((volatile u8*)0x30)      /* Accessing  content of physical registers in the memory*/
 #define     DDRD 						*((volatile u8*)0x31)

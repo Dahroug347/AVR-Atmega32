@@ -1,5 +1,4 @@
 #include "Std_types.h"
-#include "Bit_utils.h"
 #include "Int_vect_map.h"
 
 #include "Glbint.h"
@@ -752,7 +751,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		}
 		else
 		{
-			Loc_enuErrState = NOK;
+			Loc_enuErrState = NULL_PTR;
 		}
 		return Loc_enuErrState;
 	}
@@ -767,7 +766,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		}
 		else
 		{
-			Loc_enuErrState = NOK;
+			Loc_enuErrState = NULL_PTR;
 		}
 		return Loc_enuErrState;
 	}
@@ -813,7 +812,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		}
 		else
 		{
-			Loc_enuErrState = NOK;
+			Loc_enuErrState = NULL_PTR;
 		}
 		return Loc_enuErrState;
 	}
@@ -828,7 +827,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		}
 		else
 		{
-			Loc_enuErrState = NOK;
+			Loc_enuErrState = NULL_PTR;
 		}
 		return Loc_enuErrState;
 	}
@@ -843,7 +842,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		}
 		else
 		{
-			Loc_enuErrState = NOK;
+			Loc_enuErrState = NULL_PTR;
 		}
 		return Loc_enuErrState;
 	}
@@ -858,7 +857,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		}
 		else
 		{
-			Loc_enuErrState = NOK;
+			Loc_enuErrState = NULL_PTR;
 		}
 		return Loc_enuErrState;
 	}
@@ -929,7 +928,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		}
 		else
 		{
-			Loc_enuErrState = NOK;
+			Loc_enuErrState = NULL_PTR;
 		}
 		return Loc_enuErrState;
 	}
@@ -944,7 +943,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		}
 		else
 		{
-			Loc_enuErrState = NOK;
+			Loc_enuErrState = NULL_PTR;
 		}
 		return Loc_enuErrState;
 	}
