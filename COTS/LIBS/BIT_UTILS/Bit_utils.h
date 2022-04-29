@@ -5,7 +5,7 @@
 #define 	SIZE_16   16
 #define 	SIZE_32   32
 	
-#define 	REG_SIZE  SIZE_32
+#define 	REG_SIZE  SIZE_8
 	
 #if     	REG_SIZE == SIZE_8
 	
