@@ -27,7 +27,6 @@
 #define 	    STM_32_M4				1
 
 /* private function prototypes section */
-static void Sched_vidSwapTasks (TaskCtrlBlock_t* Add_tenuTask1, TaskCtrlBlock_t* Add_tenuTask2);
 static void Sched_vidRunSched(void);
 static void Sched_vidSetSchedRunFlag(void);
 #endif         /* SCHED_PRV_H_ */

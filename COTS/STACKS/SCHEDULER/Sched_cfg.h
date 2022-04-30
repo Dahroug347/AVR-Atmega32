@@ -10,7 +10,7 @@
 
 /* configured parameters defined macros section */
 #define 	SCHED_TASKS_NUM			10
-#define		SCHED_PRORITY			SCHED_PRIORITY_ON
+#define		SCHED_PRORITY			SCHED_PRIORITY_OFF
 #define 	SCHED_TARGET			ATMEGA_32
 #define 	SCHED_TICK				1
 

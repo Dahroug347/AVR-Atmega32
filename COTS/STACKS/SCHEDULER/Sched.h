@@ -16,15 +16,24 @@ typedef enum
 
 }TaskState_t;
 
+typedef enum
+{
+	SECOND_QUEUE,
+	FIRST_QUEUE,
+	BACK_QUEUE
+
+}TaskQueueType_t;
+
 typedef struct
 {
 
-	u16   		firstDelay;				//dont ever change first delay in runTime without changing periodicity
-	u16   		periodicity;
-	TaskState_t state;
-	pfunc 		pCode;
-	u8 			priority;
-	u8 			index;
+	u16   		    firstDelay;				//dont ever change first delay in runTime without changing periodicity
+	u16   		    periodicity;
+	TaskState_t     state;
+	TaskQueueType_t queueType;
+	pfunc 		    pCode;
+	u8 			    priority;
+	u8 			    index;
 
 }TaskCtrlBlock_t;
 

@@ -25,6 +25,20 @@ u8 				   SCHED_u8StartFlag 						  = SCHED_STOP;
 /* -------------------------------------------------------------------------------------------- */
 
 
+/****************************************************** Optional private function if "priority" will be used according to user configuration ******************************************************/
+#if SCHED_PRORITY
+static void Sched_vidSwapTasks (TaskCtrlBlock_t* Add_tenuTask1, TaskCtrlBlock_t* Add_tenuTask2)
+{
+		TaskCtrlBlock_t Loc_tenuTaskTempHolder = *Add_tenuTask1;
+		*Add_tenuTask1 = *Add_tenuTask2;
+		*Add_tenuTask2 = Loc_tenuTaskTempHolder;
+
+		Add_tenuTask1->index = Add_tenuTask1->priority;
+		Add_tenuTask2->index = Add_tenuTask2->priority;
+}
+#endif
+
+
 /****************************************************** section of User function section  ******************************************************/
 
 Std_enuErrorStatus Sched_tenuInit(void)
@@ -116,6 +130,7 @@ void 				Sched_vidDeleteTask(u8 Copy_u8TaskIndex)
 Std_enuErrorStatus  Sched_tenuStartSched (void)
 {
 	Std_enuErrorStatus Loc_tenuErrStatusRetVal = OK;
+	u8 Loc_u8BackQueueIterator = SCHED_ZERO;
 
 		if (Gpt_enuStartTimer(TIMER0, SCHED_TICK) != OK)
 		{
@@ -129,6 +144,30 @@ Std_enuErrorStatus  Sched_tenuStartSched (void)
 				{
 					SCHED_u8StartFlag = SCHED_STOP;
 					Sched_vidRunSched();
+				}
+				else
+				{
+					while (SCHED_u8StartFlag != SCHED_START && Loc_u8BackQueueIterator < SCHED_TASKS_NUM)
+					{
+						if (SCHED_tenuArrTasks[Loc_u8BackQueueIterator]->queueType == BACK_QUEUE)
+						{
+							SCHED_tenuArrTasks[Loc_u8BackQueueIterator]->pCode();
+						}
+						else
+						{
+
+						}
+						Loc_u8BackQueueIterator ++;
+					}
+					if (Loc_u8BackQueueIterator == SCHED_TASKS_NUM)
+					{
+						Loc_u8BackQueueIterator = SCHED_ZERO;
+					}
+					else
+					{
+
+					}
+
 				}
 			}
 		}
@@ -171,46 +210,78 @@ void Sched_vidRunSched(void)
 	for (Loc_u8SchedIterator = SCHED_ZERO; Loc_u8SchedIterator < SCHED_TASKS_NUM; Loc_u8SchedIterator++)
 	{
 		if (SCHED_tenuArrTasks[Loc_u8SchedIterator] != NULL)
-		{
-			if (SCHED_tenuArrTasks[Loc_u8SchedIterator]->state == RUNNING)
-				{
-					if (SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay == SCHED_ZERO && SCHED_tenuArrTasks[Loc_u8SchedIterator]->pCode != NULL)
-					{
-						SCHED_tenuArrTasks[Loc_u8SchedIterator]->pCode();
-						SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay = SCHED_tenuArrTasks[Loc_u8SchedIterator]->periodicity;
-					}
+			{
+			  if (SCHED_tenuArrTasks[Loc_u8SchedIterator]->queueType == SECOND_QUEUE)
+			  {
+					if (SCHED_tenuArrTasks[Loc_u8SchedIterator]->state == RUNNING)
+						{
+							if (SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay == SCHED_ZERO && SCHED_tenuArrTasks[Loc_u8SchedIterator]->pCode != NULL)
+							{
+								SCHED_tenuArrTasks[Loc_u8SchedIterator]->pCode();
+								SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay = SCHED_tenuArrTasks[Loc_u8SchedIterator]->periodicity;
+							}
+							else
+							{
+
+							}
+							SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay --;
+						}
 					else
 					{
 
 					}
-					SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay --;
-				}
+			  }
+			  else
+			  {
+
+			  }
+
+			}
 			else
 			{
 
 			}
-		}
-		else
-		{
+	}
 
-		}
+	for (Loc_u8SchedIterator = SCHED_ZERO; Loc_u8SchedIterator < SCHED_TASKS_NUM; Loc_u8SchedIterator++)
+	{
+		if (SCHED_tenuArrTasks[Loc_u8SchedIterator] != NULL)
+			{
+			  if (SCHED_tenuArrTasks[Loc_u8SchedIterator]->queueType == FIRST_QUEUE)
+			  {
+					if (SCHED_tenuArrTasks[Loc_u8SchedIterator]->state == RUNNING)
+						{
+							if (SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay == SCHED_ZERO && SCHED_tenuArrTasks[Loc_u8SchedIterator]->pCode != NULL)
+							{
+								SCHED_tenuArrTasks[Loc_u8SchedIterator]->pCode();
+								SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay = SCHED_tenuArrTasks[Loc_u8SchedIterator]->periodicity;
+							}
+							else
+							{
 
+							}
+							SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay --;
+						}
+					else
+					{
+
+					}
+			  }
+			  else
+			  {
+
+			  }
+
+			}
+			else
+			{
+
+			}
 	}
 
 
 }
 
-#if SCHED_PRORITY
-void Sched_vidSwapTasks (TaskCtrlBlock_t* Add_tenuTask1, TaskCtrlBlock_t* Add_tenuTask2)
-{
-		TaskCtrlBlock_t Loc_tenuTaskTempHolder = *Add_tenuTask1;
-		*Add_tenuTask1 = *Add_tenuTask2;
-		*Add_tenuTask2 = Loc_tenuTaskTempHolder;
-
-		Add_tenuTask1->index = Add_tenuTask1->priority;
-		Add_tenuTask2->index = Add_tenuTask2->priority;
-}
-#endif
 
 void Sched_vidSetSchedRunFlag(void)
 {
