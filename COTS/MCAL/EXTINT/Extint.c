@@ -8,7 +8,7 @@
 #define      MCUCR		*((volatile u8*)0x55)
 #define      MCUCSR		*((volatile u8*)0x54)
 
-#define      GICR_EXT_INT_CLR	0x1F
+#define      GICR_EXT_INT_CLR	    0x1F
 #define      INT0_MODE_CLEAR		0xFC
 #define      INT1_MODE_CLEAR		0xF3
 #define      INT2_MODE_CLEAR		0xBF
@@ -37,17 +37,17 @@ void Extint_vidInit (void)
 #endif
 }
 
-void Extint_vidEnable (u8 EXT_INTx_ENABLE, u8 EXT_INTx_MODE)
+void Extint_vidEnableAndSetPolarity (u8 EXT_INTx_ENABLE, u8 EXT_INTx_MODE)
 {
-		GICR|=	EXT_INTx_ENABLE;
+		GICR   |= EXT_INTx_ENABLE;
 	
 	if(EXT_INTx_ENABLE == EXT_INT2_ENABLE)
 	{
-		MCUCSR|= EXT_INTx_MODE;
+		MCUCSR |= EXT_INTx_MODE;
 	}
 	else 
 	{
-		MCUCR|= EXT_INTx_MODE;
+		MCUCR  |= EXT_INTx_MODE;
 	}
 }
 
