@@ -224,7 +224,7 @@ void Sched_vidRunSched(void)
 							{
 
 							}
-							SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay --;
+							SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay -= SCHED_TICK;
 						}
 					else
 					{
@@ -260,7 +260,7 @@ void Sched_vidRunSched(void)
 							{
 
 							}
-							SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay --;
+							SCHED_tenuArrTasks[Loc_u8SchedIterator]->firstDelay -= SCHED_TICK;
 						}
 					else
 					{
