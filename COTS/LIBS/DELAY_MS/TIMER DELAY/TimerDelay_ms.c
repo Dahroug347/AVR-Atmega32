@@ -37,20 +37,26 @@ Std_enuErrorStatus TimerDelay_ms (u32 Copy_u32TimeMsec)
 		Gpt_enuInit();
 	#if DELAY_TIMER == TIMER0
 		Gpt_enuRegisterCbf_TIM0_OVF(setDelayFlag);
+		Gpt_enuEnableNotification(DELAY_TIMER);
 	#elif DELAY_TIMER == TIMER1
 		Gpt_enuRegisterCbf_TIM1_OVF(setDelayFlag);
+		Gpt_enuEnableNotification(DELAY_TIMER);
 	#else
 		Gpt_enuRegisterCbf_TIM2_OVF(setDelayFlag);
+		Gpt_enuEnableNotification(DELAY_TIMER);
 	#endif
+
 		flag = 1;
 	  }
 
-	  Gpt_enuStartTimer(Copy_u32TimeMsec, DELAY_TIMER);
+	  Gpt_enuStartTimer(DELAY_TIMER, Copy_u32TimeMsec);
 
 	  while (Del_Glbu8Flag != 1)
 	  {
 		  asm("NOP");
 	  }
+
+	  Gpt_enuStopTimer(DELAY_TIMER);
 
 	  Del_Glbu8Flag = 0;
   }

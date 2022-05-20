@@ -66,7 +66,7 @@ typedef enum
 
 extern Port_tenuErrorStatus Port_enuSetPinDirection(u8 Copy_u8PinNum,u8 Copy_u8PinDirection);
 extern Port_tenuErrorStatus Port_enuSetPinMode(u8 Copy_u8PinNum,u8 Copy_u8PinMode);
-void Port_vidInit(void);
+extern void                 Port_vidInit(void);
 
 #endif		/* PORT_H_ */
 

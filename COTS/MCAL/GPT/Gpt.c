@@ -131,7 +131,7 @@
 	static volatile u8  Gpt_svu8TCNT2InitValue   = GPT_CLR_VAL;
 #endif	
 
-extern Std_enuErrorStatus Gpt_enuInit (void)
+Std_enuErrorStatus Gpt_enuInit (void)
 {
 	Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -194,7 +194,7 @@ extern Std_enuErrorStatus Gpt_enuInit (void)
 	return Loc_enuErrState;
 }
 
-extern Std_enuErrorStatus Gpt_enuGetTimeElapsed (u8 Copy_u8TimerId, pf32 Add_pf32TimeMs)
+Std_enuErrorStatus Gpt_enuGetTimeElapsed (u8 Copy_u8TimerId, pf32 Add_pf32TimeMs)
 {
 	Std_enuErrorStatus Loc_enuErrState = OK;
 	if (Copy_u8TimerId >= GPT_CHANNELS_NUM)
@@ -258,7 +258,7 @@ extern Std_enuErrorStatus Gpt_enuGetTimeElapsed (u8 Copy_u8TimerId, pf32 Add_pf3
 	return Loc_enuErrState;
 }
 
-extern Std_enuErrorStatus Gpt_enuGetTimeRemaining(u8 Copy_u8TimerId, pf32 Add_pf32TimeMs)
+Std_enuErrorStatus Gpt_enuGetTimeRemaining(u8 Copy_u8TimerId, pf32 Add_pf32TimeMs)
 {
 	Std_enuErrorStatus Loc_enuErrState = OK;
 	if (Copy_u8TimerId >= GPT_CHANNELS_NUM)
@@ -321,7 +321,7 @@ extern Std_enuErrorStatus Gpt_enuGetTimeRemaining(u8 Copy_u8TimerId, pf32 Add_pf
 	return Loc_enuErrState;
 }
 
-extern Std_enuErrorStatus Gpt_enuStartTimer(u8 Copy_u8TimerId, u32 Copy_u32TimeMs)
+Std_enuErrorStatus Gpt_enuStartTimer(u8 Copy_u8TimerId, u32 Copy_u32TimeMs)
 {
 	Std_enuErrorStatus Loc_enuErrState = OK;
 	
@@ -500,7 +500,7 @@ extern Std_enuErrorStatus Gpt_enuStartTimer(u8 Copy_u8TimerId, u32 Copy_u32TimeM
 	return Loc_enuErrState;
 }
 
-extern Std_enuErrorStatus Gpt_enuStopTimer(u8 Copy_u8TimerId)
+Std_enuErrorStatus Gpt_enuStopTimer(u8 Copy_u8TimerId)
 {
 	Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -554,7 +554,7 @@ extern Std_enuErrorStatus Gpt_enuStopTimer(u8 Copy_u8TimerId)
 	return Loc_enuErrState;
 }
 
-extern Std_enuErrorStatus Gpt_enuEnableNotification (u8 Copy_u8TimerId)
+Std_enuErrorStatus Gpt_enuEnableNotification (u8 Copy_u8TimerId)
 {
 	Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -608,7 +608,7 @@ extern Std_enuErrorStatus Gpt_enuEnableNotification (u8 Copy_u8TimerId)
 	return Loc_enuErrState;
 }
 
-extern Std_enuErrorStatus Gpt_enuDisableNotification (u8 Copy_u8TimerId)
+Std_enuErrorStatus Gpt_enuDisableNotification (u8 Copy_u8TimerId)
 {
 	Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -662,7 +662,7 @@ extern Std_enuErrorStatus Gpt_enuDisableNotification (u8 Copy_u8TimerId)
 	return Loc_enuErrState;
 }
 
-extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
+Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 {
 	Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -741,7 +741,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 
 #if TIMER_0
 
-	extern Std_enuErrorStatus Gpt_enuRegisterCbf_TIM0_OVF    (pfunc Add_pfunIsr)
+	Std_enuErrorStatus Gpt_enuRegisterCbf_TIM0_OVF    (pfunc Add_pfunIsr)
 	{
 		Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -756,7 +756,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		return Loc_enuErrState;
 	}
 
-	extern Std_enuErrorStatus Gpt_enuRegisterCbf_TIM0_COMP   (pfunc Add_pfunIsr)
+	Std_enuErrorStatus Gpt_enuRegisterCbf_TIM0_COMP   (pfunc Add_pfunIsr)
 	{
 		Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -802,7 +802,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 
 #if TIMER_1
 
-	extern Std_enuErrorStatus Gpt_enuRegisterCbf_TIM1_OVF    (pfunc Add_pfunIsr)
+	Std_enuErrorStatus Gpt_enuRegisterCbf_TIM1_OVF    (pfunc Add_pfunIsr)
 	{
 		Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -817,7 +817,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		return Loc_enuErrState;
 	}
 
-	extern Std_enuErrorStatus Gpt_enuRegisterCbf_TIM1_COMPB   (pfunc Add_pfunIsr)
+	Std_enuErrorStatus Gpt_enuRegisterCbf_TIM1_COMPB   (pfunc Add_pfunIsr)
 	{
 		Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -832,7 +832,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		return Loc_enuErrState;
 	}
 
-	extern Std_enuErrorStatus Gpt_enuRegisterCbf_TIM1_COMPA   (pfunc Add_pfunIsr)
+	Std_enuErrorStatus Gpt_enuRegisterCbf_TIM1_COMPA   (pfunc Add_pfunIsr)
 	{
 		Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -847,7 +847,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		return Loc_enuErrState;
 	}
 
-	extern Std_enuErrorStatus Gpt_enuRegisterCbf_TIM1_CAPT   (pfunc Add_pfunIsr)
+	Std_enuErrorStatus Gpt_enuRegisterCbf_TIM1_CAPT   (pfunc Add_pfunIsr)
 	{
 		Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -918,7 +918,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 
 #if TIMER_2
 
-	extern Std_enuErrorStatus Gpt_enuRegisterCbf_TIM2_OVF    (pfunc Add_pfunIsr)
+	Std_enuErrorStatus Gpt_enuRegisterCbf_TIM2_OVF    (pfunc Add_pfunIsr)
 	{
 		Std_enuErrorStatus Loc_enuErrState = OK;
 
@@ -933,7 +933,7 @@ extern Std_enuErrorStatus Gpt_enuSetMode (u8 Copy_u8TimerId, u8 Copy_u8Mode)
 		return Loc_enuErrState;
 	}
 
-	extern Std_enuErrorStatus Gpt_enuRegisterCbf_TIM2_COMP   (pfunc Add_pfunIsr)
+	Std_enuErrorStatus Gpt_enuRegisterCbf_TIM2_COMP   (pfunc Add_pfunIsr)
 	{
 		Std_enuErrorStatus Loc_enuErrState = OK;
 

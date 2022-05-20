@@ -7,22 +7,22 @@
 
 static u8 glbint_u8Counter = GLBINT_u8CLRVAL;
 
-extern void Glbint_vidInit (void)
+void Glbint_vidInit (void)
 {
 	
 }
 
-extern void Glbint_vidEnable (void)
+void Glbint_vidEnable (void)
 {
 	SREG |= SREG_GIE;
 }
 
-extern void Glbint_vidDisable (void)
+void Glbint_vidDisable (void)
 {
 	SREG &= ~(SREG_GIE);
 }
 
-extern void Glbint_vidEnterCriticalSec  (void)
+void Glbint_vidEnterCriticalSec  (void)
 {
 	if (GLBINT_u8CLRVAL == glbint_u8Counter)
 	{
@@ -35,7 +35,7 @@ extern void Glbint_vidEnterCriticalSec  (void)
 	glbint_u8Counter ++;
 }
 
-extern Std_enuErrorStatus  Glbint_enuExitCriticalSec  (void)
+Std_enuErrorStatus  Glbint_enuExitCriticalSec  (void)
 {
 	Std_enuErrorStatus Loc_enuReturnValue = OK;
 	
