@@ -2,7 +2,7 @@
 
 #include "Dio.h"
 
-#include "keypad.h"
+#include "Keypad.h"
 #include "Keypad_cfg.h"
 
 

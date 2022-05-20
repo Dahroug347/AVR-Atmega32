@@ -1,8 +1,8 @@
 
-#include "std_types.h"
-#include "delay_ms.h"
+#include "Std_types.h"
+#include "Delay_ms.h"
 
-#include "dio.h"
+#include "Dio.h"
 
 #include "SevenSeg.h"
 #include "SevenSeg_cfg.h"

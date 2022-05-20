@@ -1,6 +1,6 @@
 #include "Std_types.h"
 
-#include "dio.h"
+#include "Dio.h"
 
 #include "DcMotor.h"
 #include "DcMotor_cfg.h"
