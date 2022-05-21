@@ -88,6 +88,8 @@ Std_enuErrorStatus ADC_tenuGetAdcValue (u16* Add_u16DigitalValue)
 		{
 			while ( (ADC_ADCSRA & ADC_ADCSRA_ADIF) == ADC_ZERO);
 
+			ADC_ADCSRA &= ~(ADC_ADCSRA_ADIF);
+
 			if ( (ADC_ADMUX & ADC_ADMUX_ADLAR_LEFT) != ADC_ZERO)
 			{
 				*Add_u16DigitalValue = (ADC_ADCH_L >> ADC_LEFT_ADJUSTMENT_SHFT_MASK);
