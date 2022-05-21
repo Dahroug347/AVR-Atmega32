@@ -28,27 +28,36 @@ void Lcd_vidDisplayNumber (u32 Copy_u8Num)
 	u32   unit    = LCD_ZERO_VAL;
 	u32   counter = LCD_ZERO_VAL;
 
-    while (Copy_u8Num != LCD_ZERO_VAL)
-    {
-    	digit += Copy_u8Num%LCD_DECIMAL_BASE;
-
-    	digit *= LCD_DECIMAL_BASE;
-
-    	counter ++;
-
-    	Copy_u8Num /= LCD_DECIMAL_BASE;
-    }
-
-    digit /= LCD_DECIMAL_BASE;
-
-	while (counter != LCD_ZERO_VAL)
+	if (Copy_u8Num == LCD_ZERO_VAL)
 	{
-		unit  = digit%LCD_DECIMAL_BASE;
-		unit  += '0';
-		LCD_vidWriteData(unit);
-		counter --;
-		digit = digit/LCD_DECIMAL_BASE;
+		LCD_vidWriteData('0');
 	}
+
+	else
+	{
+	    while (Copy_u8Num != LCD_ZERO_VAL)
+	    {
+	    	digit += Copy_u8Num%LCD_DECIMAL_BASE;
+
+	    	digit *= LCD_DECIMAL_BASE;
+
+	    	counter ++;
+
+	    	Copy_u8Num /= LCD_DECIMAL_BASE;
+	    }
+
+	    digit /= LCD_DECIMAL_BASE;
+
+		while (counter != LCD_ZERO_VAL)
+		{
+			unit  = digit%LCD_DECIMAL_BASE;
+			unit  += '0';
+			LCD_vidWriteData(unit);
+			counter --;
+			digit = digit/LCD_DECIMAL_BASE;
+		}
+	}
+
 } 
 
 

@@ -57,7 +57,7 @@ Std_enuErrorStatus ADC_tenuStartConversion (u8 Copy_u8Channel)
 	}
 	else
 	{
-		ADC_ADMUX  &= ADC_ADMUX_CLR_MSK;
+		ADC_ADMUX  &= ADC_ADMUX_CHANNEL_CLR_MASK;
 		ADC_ADMUX  |= Copy_u8Channel;
 
 		ADC_ADCSRA |= ADC_ADCSRA_ADSC;
@@ -82,20 +82,13 @@ Std_enuErrorStatus ADC_tenuGetAdcValue (u16* Add_u16DigitalValue)
 
 		if (Loc_u8OperatingMode == ADC_ONE)
 		{
-			if ( (ADC_ADCSRA & ADC_ADCSRA_ADIF) == ADC_ONE )
-			{
-				*Add_u16DigitalValue = ADC_u16GlbAdcReadValue;
-			}
-			else
-			{
-				Loc_tenuErrStatusValue = BUSY;
-			}
+			*Add_u16DigitalValue = ADC_u16GlbAdcReadValue;
 		}
 		else
 		{
 			while ( (ADC_ADCSRA & ADC_ADCSRA_ADIF) == ADC_ZERO);
 
-			if ( (ADC_ADMUX & ADC_ADMUX_ADLAR_LEFT) == ADC_ONE)
+			if ( (ADC_ADMUX & ADC_ADMUX_ADLAR_LEFT) != ADC_ZERO)
 			{
 				*Add_u16DigitalValue = (ADC_ADCH_L >> ADC_LEFT_ADJUSTMENT_SHFT_MASK);
 
@@ -128,7 +121,13 @@ Std_enuErrorStatus ADC_tenuRegisterCallBack(pfunc Add_tpfuncAdcComplete)
 
 void ADC_Handler(void)
 {
-	if ( (ADC_ADMUX & ADC_ADMUX_ADLAR_LEFT) == ADC_ONE )
+
+	if (ADC_pFuncAdcConversionComplete != NULL)
+	{
+		ADC_pFuncAdcConversionComplete();
+	}
+
+	if ( (ADC_ADMUX & ADC_ADMUX_ADLAR_LEFT) != ADC_ZERO)
 	{
 		ADC_u16GlbAdcReadValue = (ADC_ADCH_L >> ADC_LEFT_ADJUSTMENT_SHFT_MASK);
 	}
@@ -137,8 +136,5 @@ void ADC_Handler(void)
 		ADC_u16GlbAdcReadValue = (ADC_ADCH_L);
 	}
 
-	if (ADC_pFuncAdcConversionComplete != NULL)
-	{
-		ADC_pFuncAdcConversionComplete();
-	}
+
 }
